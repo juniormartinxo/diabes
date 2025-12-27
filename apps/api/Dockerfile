@@ -3,7 +3,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Install openssl for Prisma
-RUN apk add --no-cache openssl
+RUN apk add --no-cache tzdata bash su-exec shadow openssl
 
 # Install pnpm
 RUN npm install -g pnpm
