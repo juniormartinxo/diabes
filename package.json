@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "docker compose --env-file .env -f infra/docker-compose.yml up --build",
-    "down": "docker compose -f infra/docker-compose.yml down",
+    "down": "docker compose --env-file .env -f infra/docker-compose.yml down",
     "prisma:generate": "pnpm -C apps/api prisma generate",
-    "migrate:dev": "pnpm -C apps/api prisma migrate dev"
+    "migrate:dev": "pnpm -C apps/api prisma migrate dev",
+    "exec:bash": "docker compose --env-file .env -f infra/docker-compose.yml exec api bash"
   },
   "packageManager": "pnpm@9.0.0"
 }
