@@ -1,5 +1,5 @@
 # Usando uma imagem base do Redis
-FROM redis:7.4.0-alpine
+FROM redis:7.4.0-alpine3.20
 
 # Diretório de trabalho dentro do container
 WORKDIR /usr/local/etc/redis
