@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "docker compose -f infra/docker-compose.yml up --build",
+    "dev": "docker compose --env-file .env -f infra/docker-compose.yml up --build",
     "down": "docker compose -f infra/docker-compose.yml down",
     "prisma:generate": "pnpm -C apps/api prisma generate",
     "migrate:dev": "pnpm -C apps/api prisma migrate dev"
