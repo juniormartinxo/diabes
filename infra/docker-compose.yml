@@ -1,7 +1,7 @@
 services:
 
   postgres:
-    build: infra/postgres
+    build: ./postgres
     image: pgvector/pgvector:pg16
     container_name: ${POSTGRES_CONTAINER_NAME}
     restart: always
@@ -18,8 +18,8 @@ services:
     ports:
       - '${POSTGRES_PORT_HOST}:${POSTGRES_PORT}'
     volumes:
-      - infra/postgres/postgres-data:/var/lib/postgresql/data
-      - infra/postgres/postgres/init:/docker-entrypoint-initdb.d
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
@@ -27,7 +27,7 @@ services:
       retries: 5
 
   redis:
-    build: infra/redis
+    build: ./redis
     image: redis:7.4.0-alpine
     container_name: ${REDIS_CONTAINER_NAME}
     restart: always
@@ -42,9 +42,9 @@ services:
     networks:
       - diabes-net
     volumes:
-      - infra/redis-data:/var/lib/redis/data
-      - infra/redis/redis.conf:/usr/local/etc/redis/redis.conf
-      - infra/redis/logs:/var/log/redis
+      - ./redis-data:/var/lib/redis/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis/logs:/var/log/redis
     command: >
       sh -c "redis-server /usr/local/etc/redis/redis.conf 
       --port ${REDIS_INTERNAL_PORT} 
