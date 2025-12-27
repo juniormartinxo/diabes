@@ -6,7 +6,7 @@ SPIDER_MODULES = ["crawler.spiders"]
 NEWSPIDER_MODULE = "crawler.spiders"
 
 ROBOTSTXT_OBEY = True
-LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
 
 ITEM_PIPELINES = {
     "crawler.pipelines.CleanPipeline": 300,
