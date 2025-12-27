@@ -5,7 +5,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
   extensions = [vector]
 }
 
@@ -21,6 +20,8 @@ model Document {
   updatedAt    DateTime @updatedAt
   
   chunks       Chunk[]
+
+  @@map("documents")
 }
 
 model Chunk {
@@ -37,6 +38,8 @@ model Chunk {
 
   document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
   embedding  ChunkEmbedding?
+
+  @@map("chunks")
 }
 
 model ChunkEmbedding {
@@ -47,6 +50,8 @@ model ChunkEmbedding {
   createdAt DateTime @default(now())
 
   chunk     Chunk    @relation(fields: [chunkId], references: [id], onDelete: Cascade)
+
+  @@map("chunk_embeddings")
 }
 
 model CrawlRun {
@@ -56,6 +61,8 @@ model CrawlRun {
   endedAt   DateTime?
   stats     Json?
   createdAt DateTime @default(now())
+
+  @@map("crawl_runs")
 }
 
 model QALog {
@@ -65,4 +72,6 @@ model QALog {
   answer      String?  @db.Text
   safetyFlags String[]
   createdAt   DateTime @default(now())
+
+  @@map("qalogs")
 }
