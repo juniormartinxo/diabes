@@ -6,10 +6,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   const config = new DocumentBuilder()
-    .setTitle('Diabes API')
-    .setDescription('API for Diabes RAG system')
+    .setTitle('Diabetia API')
+    .setDescription('API for Diabetia RAG system')
     .setVersion('1.0')
-    .build();
+    .build()
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
